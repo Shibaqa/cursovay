@@ -21,8 +21,7 @@ class Client(models.Model):
     full_name = models.CharField(max_length=150, verbose_name='ФИО')
     email = models.EmailField(verbose_name='почта')
     comment = models.TextField(verbose_name='комментарий', **NULLABLE)
-
-    # user = models.ForeignKey(users.models.User, on_delete=models.CASCADE, null=True, verbose_name='чей клиент')
+    user = models.ForeignKey(users.models.User, on_delete=models.CASCADE, null=True, verbose_name='чей клиент')
 
     def __str__(self):
         return f'{self.email} ({self.full_name})'

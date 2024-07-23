@@ -1,9 +1,8 @@
+from django.shortcuts import render
 import random
-
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
-
 from blog.models import Blog
 from main.forms import MailForm, MessageForm, ClientForm, MailModeratorForm
 from main.models import Message, Mail, Client, Logs
@@ -140,6 +139,7 @@ class ClientListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self, *args, **kwargs):
         queryset = super().get_queryset(*args, **kwargs)
+        queryset = Client.objects.filter(user=self.request.user)
         return queryset
 
 

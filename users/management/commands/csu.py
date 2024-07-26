@@ -4,6 +4,7 @@ from users.models import User
 
 
 class Command(BaseCommand):
+
     def handle(self, *args, **options):
         user = User.objects.create(
             email='admin@sky.pro',
@@ -12,5 +13,6 @@ class Command(BaseCommand):
             is_staff=True,
             is_superuser=True
         )
-        user.set_password('12345')
+
+        user.set_password('123456')
         user.save()

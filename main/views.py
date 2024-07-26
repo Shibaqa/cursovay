@@ -1,4 +1,3 @@
-from django.shortcuts import render
 import random
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy, reverse
@@ -68,6 +67,9 @@ class HomeView(ListView):
         context_data = super().get_context_data(**kwargs)
         context_data['mailings_count'] = get_cache_for_mailings()
         context_data['active_mailings_count'] = get_cache_for_active_mailings()
+        blog_list = list(Blog.objects.all())
+        random.shuffle(blog_list)
+        context_data['blog_list'] = blog_list[:3]
         context_data['clients_count'] = len(Client.objects.all())
         return context_data
 

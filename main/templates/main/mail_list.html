@@ -10,7 +10,7 @@
     <div class="row">
 
         {% for object in object_list %}
-            {% if user == object.owner or perms.service.view_mailing %}
+            {% if users == object.owner or perms.service.view_mailing %}
             <div class="col-6 mb-3">
                 <div class="card">
                     <div class="card-header">

@@ -1,3 +1,4 @@
+from django.shortcuts import render
 import random
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy, reverse

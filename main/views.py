@@ -75,8 +75,9 @@ class HomeView(ListView):
         return context_data
 
 
-class MailDetailView(DetailView):
+class MailDetailView(LoginRequiredMixin, DetailView):
     model = Mail
+    permission_required = 'main.mail_view'
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
@@ -85,9 +86,10 @@ class MailDetailView(DetailView):
         return context_data
 
 
-class MailDeleteView(DeleteView):
+class MailDeleteView(LoginRequiredMixin, DeleteView):
     model = Mail
     success_url = reverse_lazy('main:mail_list')
+    permission_required = 'main.mail_delete'
 
 
 class MessageCreateView(LoginRequiredMixin, CreateView):
